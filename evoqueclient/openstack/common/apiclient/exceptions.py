@@ -1,3 +1,8 @@
+# Copyright 2011 Nebula, Inc.
+# Copyright 2013 Alessio Ababilov
+# Copyright 2013 OpenStack Foundation
+# All Rights Reserved.
+#
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
 #    a copy of the License at
@@ -10,19 +15,16 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
+"""
+Exception definitions.
+"""
 
-import pbr.version
+class ClientException(Exception):
+    """The base exception class for all exceptions this library raises.
+    """
+    pass
 
-_ROOT = os.path.abspath(os.path.dirname(__file__))
 
-
-def get_resource(path):
-    return os.path.join(_ROOT, 'data', path)
-
-version_info = pbr.version.VersionInfo('python-evoqueclient')
-
-try:
-    __version__ = version_info.version_string()
-except AttributeError:
-    __version__ = None
+class CommandError(ClientException):
+    """Error in CLI tool."""
+    pass
