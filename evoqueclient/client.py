@@ -10,19 +10,10 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
-
-import pbr.version
-
-_ROOT = os.path.abspath(os.path.dirname(__file__))
+from evoqueclient.common import utils
 
 
-def get_resource(path):
-    return os.path.join(_ROOT, 'data', path)
-
-version_info = pbr.version.VersionInfo('python-evoqueclient')
-
-try:
-    __version__ = version_info.version_string()
-except AttributeError:
-    __version__ = None
+def Client(version, *args, **kwargs):
+    module = utils.import_versioned_module(version, 'client')
+    client_class = getattr(module, 'Client')
+    return client_class(*args, **kwargs)

@@ -1,3 +1,4 @@
+#
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
 #    a copy of the License at
@@ -10,19 +11,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
-
-import pbr.version
-
-_ROOT = os.path.abspath(os.path.dirname(__file__))
+import six
 
 
-def get_resource(path):
-    return os.path.join(_ROOT, 'data', path)
-
-version_info = pbr.version.VersionInfo('python-evoqueclient')
-
-try:
-    __version__ = version_info.version_string()
-except AttributeError:
-    __version__ = None
+six.add_move(six.MovedModule('mox', 'mox', 'mox3.mox'))

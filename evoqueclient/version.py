@@ -10,19 +10,7 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-import os
 
-import pbr.version
+from pbr import version
 
-_ROOT = os.path.abspath(os.path.dirname(__file__))
-
-
-def get_resource(path):
-    return os.path.join(_ROOT, 'data', path)
-
-version_info = pbr.version.VersionInfo('python-evoqueclient')
-
-try:
-    __version__ = version_info.version_string()
-except AttributeError:
-    __version__ = None
+version_info = version.VersionInfo('python-evoqueclient')
