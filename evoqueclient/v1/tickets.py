@@ -10,18 +10,24 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from evoqueclient.common import utils
+import six
+from six.moves import urllib
 
-def do_ticket_list(ec, args={}):
-    """List all available tickets."""
-    tickets = mc.ticket.list()
-    field_labels = ["ID", "Name"]
-    fields = ["id", "name"]
-    utils.print_list(tickets, fields, field_labels)
+from evoqueclient.common import base
 
 
-@utils.arg("name", metavar="<TICKET_NAME>",
-           help="Ticket name.")
-def do_ticket_create(ec, args):
-    """Create a ticket."""
-    ec.tickets.add({"name": args.name})
+class Ticket(base.Resource):
+    def __repr__(self):
+        return "<Ticket %s>" % self._info
+
+    def data(self, **kwargs):
+        return self.manager.data(self, **kwargs)
+
+
+class TicketManager(base.Manager):
+    resource_class = Ticket
+
+
+    def add(self, data):
+        return self._create('/v1/ticket', data)
+
