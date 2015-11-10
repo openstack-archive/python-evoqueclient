@@ -15,7 +15,9 @@
 
 import os
 
+from oslo_utils import encodeutils
 from oslo_utils import importutils
+import prettytable
 
 
 # Decorator for cli-args
@@ -46,3 +48,19 @@ def env(*vars, **kwargs):
         if value:
             return value
     return kwargs.get('default', '')
+
+
+def print_list(objs, fields, field_labels, formatters={}, sortby=0):
+    pt = prettytable.PrettyTable([f for f in field_labels], caching=False)
+    pt.align = 'l'
+
+    for o in objs:
+        row = []
+        for field in fields:
+            if field in formatters:
+                row.append(formatters[field](o))
+            else:
+                data = getattr(o, field, None) or ''
+                row.append(data)
+        pt.add_row(row)
+    print(encodeutils.safe_encode(pt.get_string()))

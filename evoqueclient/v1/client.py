@@ -10,19 +10,16 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from evoqueclient.common import utils
+from evoqueclient.common import http
+from evoqueclient.v1 import tickets
 
 
-def do_ticket_list(ec, args={}):
-    """List all available tickets."""
-    tickets = ec.ticket.list()
-    field_labels = ["ID", "Name"]
-    fields = ["id", "name"]
-    utils.print_list(tickets, fields, field_labels)
+class Client(http.HTTPClient):
+    """Client for the Evoque v1 API.
 
+    """
 
-@utils.arg("name", metavar="<TICKET_NAME>",
-           help="Ticket name.")
-def do_ticket_create(ec, args):
-    """Create a ticket."""
-    ec.tickets.add({"name": args.name})
+    def __init__(self, *args, **kwargs):
+        """Initialize a new client for the Evoque v1 API."""
+        super(Client, self).__init__(*args, **kwargs)
+        self.tickets = tickets.TicketManager(self)
