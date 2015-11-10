@@ -10,18 +10,19 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from evoqueclient.common import http
-from evoqueclient.v1 import tickets
-from evoqueclient.v1 import workflows
+from evoqueclient.common import base
 
 
-class Client(http.HTTPClient):
-    """Client for the Evoque v1 API.
+class Workflow(base.Resource):
+    def __repr__(self):
+        return "<Workflow %s>" % self._info
 
-    """
+    def data(self, **kwargs):
+        return self.manager.data(self, **kwargs)
 
-    def __init__(self, *args, **kwargs):
-        """Initialize a new client for the Evoque v1 API."""
-        super(Client, self).__init__(*args, **kwargs)
-        self.tickets = tickets.TicketManager(self)
-        self.workflows = workflows.WorkflowManager(self)
+
+class WorkflowManager(base.Manager):
+    resource_class = Workflow
+
+    def add(self, data):
+        return self._create('/v1/workflow', data)
