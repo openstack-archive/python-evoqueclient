@@ -24,5 +24,11 @@ class Ticket(base.Resource):
 class TicketManager(base.Manager):
     resource_class = Ticket
 
+    def list(self, **kwargs):
+        """Get tickets list with pagination support."""
+
+        url = '/v1/ticket'
+        return self._list(url, response_key='tickets')
+
     def add(self, data):
         return self._create('/v1/ticket', data)
