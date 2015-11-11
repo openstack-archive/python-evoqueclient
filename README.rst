@@ -7,7 +7,6 @@ Evoque is a ticket service for OpenStack.
 * `Blueprints`_ - feature specifications
 * `Bugs`_ - issue tracking
 * `Source`_
-* `Specs`_
 * `How to Contribute`_
 
 .. _Launchpad project: https://launchpad.net/python-evoqueclient

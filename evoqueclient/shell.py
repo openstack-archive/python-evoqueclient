@@ -67,7 +67,7 @@ class EvoqueShell(object):
         parser.add_argument('-k', '--insecure',
                             default=False,
                             action='store_true',
-                            help="Explicitly allow muranoclient to perform "
+                            help="Explicitly allow evoqueclient to perform "
                                  "\"insecure\" SSL (https) requests. "
                                  "The server's certificate will "
                                  "not be verified against any certificate "
@@ -280,11 +280,11 @@ class EvoqueShell(object):
                                    " env[OS_AUTH_TOKEN]")
 
         if args.os_no_client_auth:
-            if not args.murano_url:
+            if not args.evoque_url:
                 raise exc.CommandError(
                     "If you specify --os-no-client-auth"
-                    " you must also specify a Murano API URL"
-                    " via either --murano-url or env[MURANO_URL]")
+                    " you must also specify a Evoque API URL"
+                    " via either --evoque-url or env[EVOQUE_URL]")
         else:
             # Tenant name or ID is needed to make keystoneclient retrieve a
             # service catalog, it's not required if os_no_client_auth is
