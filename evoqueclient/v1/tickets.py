@@ -24,5 +24,18 @@ class Ticket(base.Resource):
 class TicketManager(base.Manager):
     resource_class = Ticket
 
+    def list(self, **kwargs):
+        """Get tickets list with pagination support.
+
+        :param sort_keys: an array of fields used to sort the list (string)
+        :param sort_dir: 'asc' or 'desc' for ascending or descending sort
+        :param limit: maximum number of categories to return
+        :param marker: begin returning categories that appear later in the
+                       category list than that represented by this marker id
+        """
+
+        url = '/v1/ticket'
+        return self._list(url, response_key='tickets')
+
     def add(self, data):
         return self._create('/v1/ticket', data)

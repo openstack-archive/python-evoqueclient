@@ -15,9 +15,11 @@ from evoqueclient.common import utils
 
 def do_ticket_list(ec, args={}):
     """List all available tickets."""
-    tickets = ec.ticket.list()
-    field_labels = ["ID", "Name"]
-    fields = ["id", "name"]
+    tickets = ec.tickets.list()
+    field_labels = ["ID", "Name", "Status", "Domain", "User_ID", "Domain_id",
+                    "Project", "User", "Type"]
+    fields = ["id", "name", "status", "domain", "user_id", "domain_id",
+              "project", "user", "type"]
     utils.print_list(tickets, fields, field_labels)
 
 
