@@ -24,5 +24,9 @@ class Workflow(base.Resource):
 class WorkflowManager(base.Manager):
     resource_class = Workflow
 
+    def list(self, **kwargs):
+        url = '/v1/workflow'
+        return self._list(url, response_key='workflows')
+
     def add(self, data):
         return self._create('/v1/workflow', data)

@@ -15,6 +15,7 @@ from evoqueclient.common.i18n import _
 from evoqueclient.common import utils
 
 
+# Tickets
 def do_ticket_list(ec, args={}):
     """List all available tickets."""
     tickets = ec.tickets.list()
@@ -30,6 +31,17 @@ def do_ticket_list(ec, args={}):
 def do_ticket_create(ec, args):
     """Create a ticket."""
     ec.tickets.add({"name": args.name})
+
+
+# Workflows
+def do_workflow_list(ec, args={}):
+    """List all available workflows."""
+    workflows = ec.workflows.list()
+    field_labels = ["ID", "Name", "Status", "Domain", "User_ID", "Domain_id",
+                    "Project", "User"]
+    fields = ["id", "name", "status", "domain", "user_id", "domain_id",
+              "project", "user"]
+    utils.print_list(workflows, fields, field_labels)
 
 
 @utils.arg("-s", "--spec-file", metavar="<SPEC_FILE>", required=True,
