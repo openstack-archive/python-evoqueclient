@@ -1,0 +1,9 @@
+Code-Review+2: zhurong <aaronzhu1121@gmail.com>
+Code-Review+2: gongysh <gong.yongsheng@99cloud.net>
+Workflow+1: gongysh <gong.yongsheng@99cloud.net>
+Verified+2: Zuul
+Submitted-by: Zuul
+Submitted-at: Tue, 16 Jan 2018 02:56:01 +0000
+Reviewed-on: https://review.openstack.org/533690
+Project: openstack/python-evoqueclient
+Branch: refs/heads/master
